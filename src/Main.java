@@ -24,9 +24,9 @@ public class Main {
     }
 
     public static String escolherLetraAleatoria(){
-        String[] letters = {"a","b"};
+        String[] letters = {"a","b","c","d","e"};
         String chosedLetter = "";
-        int random = new Random(letters.length).nextInt();
+        int random = new Random().nextInt(letters.length);
         chosedLetter = letters[random];
         return chosedLetter;
     }
