@@ -1,9 +1,10 @@
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String number, upperCaseLetters, specialCharacters, password;
+        String number, upperCaseLetters, specialCharacters, password = "";
         int charactersAmount;
         System.out.println("Bem vindo ao gerador de senhas automático! \nApós essa mensagem serão feitas perguntas para a geração de senhas da sua preferência\nObs: Por padrão as senhas já são geradas com letras minúsculas!");
         System.out.println("Quantos caracteres você deseja?");
@@ -17,7 +18,16 @@ public class Main {
         specialCharacters = sc.next();
 
         for(int i = 1; i <= charactersAmount; i++){
-
+            password += escolherLetraAleatoria();
+            System.out.println(password);
         }
+    }
+
+    public static String escolherLetraAleatoria(){
+        String[] letters = {"a","b"};
+        String chosedLetter = "";
+        int random = new Random(letters.length).nextInt();
+        chosedLetter = letters[random];
+        return chosedLetter;
     }
 }
