@@ -1,6 +1,9 @@
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -24,14 +27,39 @@ public class Main {
             password += escolherLetraAleatoria(Objects.equals(upperCaseLetters, "S"),Objects.equals(number, "S"),Objects.equals(specialCharacters, "S"));
             System.out.println(password);
         }
+
+        System.out.println("Sua senha final é: \n" + password);
     }
 
     public static String escolherLetraAleatoria(boolean uppercase, boolean numbers, boolean special){
         String[] letters = "abcdefghijklmnopqrstuvwxyz".split("");
         String[] lettersUpperCase = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
-        String chosedLetter = "";
-        int random = new Random().nextInt(letters.length);
-        chosedLetter = letters[random];
+        String[] numberArray = "0123456789".split("");
+        String[] specialCharacters = "!@#$%&*-_=+".split("");
+
+        String[][] types = {letters,lettersUpperCase,numberArray, specialCharacters};
+
+        ArrayList<String[]> typesList = new ArrayList<>(Arrays.asList(types));
+
+        String chosedLetter;
+
+                if(!uppercase) {
+                    typesList.remove(lettersUpperCase);
+                }
+                if(!numbers){
+                    typesList.remove(numberArray);
+                }
+                if(!special){
+                    typesList.remove(specialCharacters);
+                }
+
+        types = typesList.toArray(new String[typesList.size()][]);
+
+        int randomType = new Random().nextInt(types.length);
+        String[] arraychosed = types[randomType];
+        int random = new Random().nextInt(arraychosed.length);
+        chosedLetter = arraychosed[random];
+
         return chosedLetter;
     }
 }
